@@ -22,7 +22,7 @@ var createSprite = function(selector) {
   }
 
   var isFinished = function() {
-    return current >= last;
+    return !hasNext();
   }
 
   var $el = $(selector);
