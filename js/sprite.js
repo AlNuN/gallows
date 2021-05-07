@@ -16,6 +16,15 @@ var createSprite = function(selector) {
       if (hasNext()) moveFrame (frames[current], frames[++current]);
   }
 
+  var reset = function() {
+    moveFrame(frames[current], frames[0]);
+    current = 0;
+  }
+
+  var isFinished = function() {
+    return current >= last;
+  }
+
   var $el = $(selector);
 
   var frames = [
@@ -29,5 +38,9 @@ var createSprite = function(selector) {
 
   $el.addClass(frames[current]);
 
-  return { nextFrame: nextFrame };
+  return { 
+    nextFrame: nextFrame,
+    reset: reset,
+    isFinished: isFinished,
+  };
 }
