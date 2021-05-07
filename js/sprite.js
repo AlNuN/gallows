@@ -1,12 +1,33 @@
-function createSprite (selector) {
-  var elem = document.querySelector(selector);
-  var i = 0;
-  return {
-    nextFrame: function () {
-      if (i>9) return;
-      elem.className = 'sprite frame' + i;
-      i += 1;
-    }
-  } 
-}
+var createSprite = function(selector) {
 
+  var hasNext = function() {
+
+      return current + 1 <= last;
+  }
+
+  var moveFrame = function(from, to) {
+
+      $el.removeClass(from)
+          .addClass(to);
+  }
+
+  var nextFrame = function() {
+
+      if (hasNext()) moveFrame (frames[current], frames[++current]);
+  }
+
+  var $el = $(selector);
+
+  var frames = [
+      'frame1', 'frame2', 'frame3', 'frame4', 'frame5',
+      'frame6', 'frame7', 'frame8', 'frame9'
+  ];
+
+  var current = 0;
+
+  var last = frames.length - 1;
+
+  $el.addClass(frames[current]);
+
+  return { nextFrame: nextFrame };
+}
