@@ -23,3 +23,5 @@ Alura's final project of its JavaScript course
 Now, the main function in `jogo.js` receives a sprite object as a parameter
 
 - Add `processaChute(chute)` function. It should fill the letter in `lacunas` if the guess is right or make the hanged man sprite show a new limb
+- Add `ganhou()`, `perdeu()`, `ganhouOuPerdeu()`, `reinicia()` to: know if the player won, know if the player lose, know if the game is over and to reset all game state
+

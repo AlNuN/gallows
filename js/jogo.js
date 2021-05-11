@@ -3,20 +3,38 @@ var criaJogo = function (sprite) {
   var lacunas = [];
   var palavraSecreta = '';
 
+  var ganhou = function () {
+    return !!lacunas.length 
+      && !lacunas
+        .some(function (v) { return v === ''; });
+  };
+
+  var perdeu = function () {
+    return sprite.isFinished();
+  };
+
+  var ganhouOuPerdeu = function () {
+    return ganhou() || perdeu();
+  };
+
+  var reinicia = function () {
+    etapa = 1;
+    lacunas = [];
+    palavraSecreta = '';
+    sprite.reset();
+  };
+
   var processaChute = function (chute) {
-    var p = palavraSecreta.split('');
-    var acertou = false;
-    for (let i = 0; i < p.length; i++) {
-      const e = p[i];
-      if (e === chute) {
-        lacunas[i] = chute;
-        acertou = true
-      }
+    var exp = new RegExp(chute, 'gi')
+      , resultado
+      , acertou = false;
+
+    while (resultado = exp.exec(palavraSecreta)) {
+      acertou = lacunas[resultado.index] = chute;
     }
-    if (!acertou) {
-      sprite.nextFrame();
-    }
-  }
+
+   if (!acertou) sprite.nextFrame();
+};
 
   var criaLacunas = function () {
     lacunas = Array(palavraSecreta.length).fill('');
@@ -45,5 +63,9 @@ var criaJogo = function (sprite) {
     getLacunas: getLacunas,
     getEtapa: getEtapa,
     processaChute: processaChute,
+    ganhou: ganhou,
+    perdeu: perdeu,
+    ganhouOuPerdeu: ganhouOuPerdeu,
+    reinicia: reinicia,
   }
 };
