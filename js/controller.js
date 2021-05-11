@@ -7,19 +7,24 @@ var criaController = function (jogo) {
   var exibeLacunas = function () {
     $lacunas.html('');
     jogo.getLacunas().forEach(function (element) {
-      $lacunas.append('<li class="lacuna">' + element +'</li>');
+      $('<li>')
+        .addClass('lacuna')
+        .text(element)
+        .appendTo($lacunas);
     });
   };
 
   // muda o texto do placeHolder do campo de entrada
   var mudaPlaceHolder = function (texto) {
-    $entrada.attr('placeholder', texto);
-    $entrada.val('');
+    $entrada
+      .val('')
+      .attr('placeholder', texto);
   };
 
   // passa para jogo.setPalavraSecreta() o valor digitado pelo jogador e chama o a função `exibeLacunas()` e `mudaPlaceHolder()` definidas no controller. 
   var guardaPalavraSecreta = function () {
-    jogo.setPalavraSecreta($entrada.val());
+    jogo.setPalavraSecreta($entrada.val().trim());
+    $entrada.val('');
     exibeLacunas();
     mudaPlaceHolder('chute');
   };
