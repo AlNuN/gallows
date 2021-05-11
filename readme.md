@@ -19,3 +19,7 @@ Alura's final project of its JavaScript course
 - Add `setPalavraSecreta(palavra)` to set a word to be guessed
 - Add `getLacunas()` to get an array filled with an empty string for each letter of the chosen word
 - Add `getEtapa()`, that returns a number that represents the game state
+
+Now, the main function in `jogo.js` receives a sprite object as a parameter
+
+- Add `processaChute(chute)` function. It should fill the letter in `lacunas` if the guess is right or make the hanged man sprite show a new limb
