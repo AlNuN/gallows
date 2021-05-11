@@ -1,26 +1,33 @@
-var criaJogo = function() {
-  var setPalavraSecreta = function(palavra) {
-    palavraSecreta = palavra;
-    qntLetras = palavra.length;
-    lacunas = Array(qntLetras).fill('');
-    etapa += 1;
+var criaJogo = function () {
+  var etapa = 1;
+  var lacunas = [];
+  var palavraSecreta = '';
+
+  var criaLacunas = function () {
+    lacunas = Array(palavraSecreta.length).fill('');
   };
 
-  var getLacunas = function() {
+  var proximaEtapa = function () {
+    etapa = 2;
+  };
+
+  var setPalavraSecreta = function (palavra) {
+    palavraSecreta = palavra;
+    criaLacunas();
+    proximaEtapa();
+  };
+
+  var getLacunas = function () {
     return lacunas;
   };
 
-  var getEtapa = function() {
+  var getEtapa = function () {
     return etapa;
   };
 
-  var palavraSecreta = '';
-  var lacunas;
-  var etapa = 1;
-
   return {
-    setPalavraSecreta: setPalavraSecreta,
+    setPalavraSecreta: setPalavraSecreta, 
     getLacunas: getLacunas,
     getEtapa: getEtapa
-  };
+  }
 };
