@@ -25,3 +25,10 @@ Now, the main function in `jogo.js` receives a sprite object as a parameter
 - Add `processaChute(chute)` function. It should fill the letter in `lacunas` if the guess is right or make the hanged man sprite show a new limb
 - Add `ganhou()`, `perdeu()`, `ganhouOuPerdeu()`, `reinicia()` to: know if the player won, know if the player lose, know if the game is over and to reset all game state
 
+## 3rd Step
+
+- Create a class to manipulate the DOM named `controller.js`
+
+- Add `exibeLacunas` to show a little square for each letter in lacunas
+- Add `mudaPlaceHolder(texto)` to change entrada placeholder
+- add `guardaPalavraSecreta()` to register the word in game logic, and call the other 2 functions
