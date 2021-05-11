@@ -5,7 +5,7 @@ var criaController = function (jogo) {
 
   // consulta jogo.getLacunas() e exibe para o usuário cada lacuna 
   var exibeLacunas = function () {
-    $lacunas.html('');
+    $lacunas.empty();
     jogo.getLacunas().forEach(function (element) {
       $('<li>')
         .addClass('lacuna')
@@ -29,6 +29,33 @@ var criaController = function (jogo) {
     mudaPlaceHolder('chute');
   };
 
+  var reinicia = function () {
+    jogo.reinicia();
+    $lacunas.empty();
+    mudaPlaceHolder('Palavra Secreta');
+  }
+
+  var verificaFim = function () {
+    if(jogo.ganhouOuPerdeu()){
+      setTimeout(function() {
+        if (jogo.ganhou()) {
+          alert('Parabéns, você ganhou o jogo');
+        } else if (jogo.perdeu()) {
+          alert('Que pena, tente novamente');
+        }
+        reinicia();
+      }, 200);
+    }
+  }
+
+  var leChute = function () {
+    var chute = $entrada.val().trim().substr(0, 1);
+    jogo.processaChute(chute);
+    $entrada.val('');
+    exibeLacunas();
+    verificaFim();
+  }
+
   // faz a associação do evento keypress para capturar a entrada do usuário toda vez que ele teclar ENTER
   var inicia = function () {
     $entrada.keypress(function (event) {
@@ -38,7 +65,7 @@ var criaController = function (jogo) {
             guardaPalavraSecreta();
             break;
           case 2:
-            alert('etapa 2 - falta implementar');
+            leChute();
             break;
           }
       }

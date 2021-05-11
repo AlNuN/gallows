@@ -32,3 +32,5 @@ Now, the main function in `jogo.js` receives a sprite object as a parameter
 - Add `exibeLacunas` to show a little square for each letter in lacunas
 - Add `mudaPlaceHolder(texto)` to change entrada placeholder
 - add `guardaPalavraSecreta()` to register the word in game logic, and call the other 2 functions
+
+- Add `leChute` to process the guess and verify win condition
