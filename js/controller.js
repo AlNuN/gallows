@@ -23,10 +23,14 @@ var criaController = function (jogo) {
 
   // passa para jogo.setPalavraSecreta() o valor digitado pelo jogador e chama o a função `exibeLacunas()` e `mudaPlaceHolder()` definidas no controller. 
   var guardaPalavraSecreta = function () {
-    jogo.setPalavraSecreta($entrada.val().trim());
-    $entrada.val('');
-    exibeLacunas();
-    mudaPlaceHolder('chute');
+    try {
+      jogo.setPalavraSecreta($entrada.val().trim());
+      $entrada.val('');
+      exibeLacunas();
+      mudaPlaceHolder('chute');
+    } catch(err) {
+      alert(err.message);
+    }
   };
 
   var reinicia = function () {
@@ -49,11 +53,15 @@ var criaController = function (jogo) {
   }
 
   var leChute = function () {
-    var chute = $entrada.val().trim().substr(0, 1);
-    jogo.processaChute(chute);
-    $entrada.val('');
-    exibeLacunas();
-    verificaFim();
+    try {
+      var chute = $entrada.val().trim().substr(0, 1);
+      jogo.processaChute(chute);
+      $entrada.val('');
+      exibeLacunas();
+      verificaFim();
+    } catch (err) {
+      alert(err.message);
+    }
   }
 
   // faz a associação do evento keypress para capturar a entrada do usuário toda vez que ele teclar ENTER
