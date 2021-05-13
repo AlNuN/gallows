@@ -1,12 +1,11 @@
-var criaController = function (jogo) {
+const criaController = (jogo) => {
 
-  var $entrada = $('#entrada');
-  var $lacunas = $('.lacunas');
+  const $entrada = $('#entrada');
+  const $lacunas = $('.lacunas');
 
-  // consulta jogo.getLacunas() e exibe para o usuário cada lacuna 
-  var exibeLacunas = function () {
+  const exibeLacunas = () => {
     $lacunas.empty();
-    jogo.getLacunas().forEach(function (element) {
+    jogo.getLacunas().forEach((element) => {
       $('<li>')
         .addClass('lacuna')
         .text(element)
@@ -14,15 +13,13 @@ var criaController = function (jogo) {
     });
   };
 
-  // muda o texto do placeHolder do campo de entrada
-  var mudaPlaceHolder = function (texto) {
+  const mudaPlaceHolder = (texto) => {
     $entrada
       .val('')
       .attr('placeholder', texto);
   };
 
-  // passa para jogo.setPalavraSecreta() o valor digitado pelo jogador e chama o a função `exibeLacunas()` e `mudaPlaceHolder()` definidas no controller. 
-  var guardaPalavraSecreta = function () {
+  const guardaPalavraSecreta = () => {
     try {
       jogo.setPalavraSecreta($entrada.val().trim());
       $entrada.val('');
@@ -33,15 +30,15 @@ var criaController = function (jogo) {
     }
   };
 
-  var reinicia = function () {
+  const reinicia = () => {
     jogo.reinicia();
     $lacunas.empty();
     mudaPlaceHolder('Palavra Secreta');
   }
 
-  var verificaFim = function () {
+  const verificaFim = () => {
     if(jogo.ganhouOuPerdeu()){
-      setTimeout(function() {
+      setTimeout(() => {
         if (jogo.ganhou()) {
           alert('Parabéns, você ganhou o jogo');
         } else if (jogo.perdeu()) {
@@ -52,7 +49,7 @@ var criaController = function (jogo) {
     }
   }
 
-  var leChute = function () {
+  const leChute = () => {
     try {
       var chute = $entrada.val().trim().substr(0, 1);
       jogo.processaChute(chute);
@@ -64,9 +61,8 @@ var criaController = function (jogo) {
     }
   }
 
-  // faz a associação do evento keypress para capturar a entrada do usuário toda vez que ele teclar ENTER
-  var inicia = function () {
-    $entrada.keypress(function (event) {
+  const inicia = () => {
+    $entrada.keypress((event) => {
       if (event.which == 13) {
         switch (jogo.getEtapa()) {
           case 1:
@@ -80,6 +76,5 @@ var criaController = function (jogo) {
     });
   };
 
-  // retorna um objeto com a propriedade inicia, que deve ser chamada assim que o controller for criado. 
-  return { inicia: inicia };
+  return { inicia };
 };

@@ -34,3 +34,7 @@ Now, the main function in `jogo.js` receives a sprite object as a parameter
 - add `guardaPalavraSecreta()` to register the word in game logic, and call the other 2 functions
 
 - Add `leChute` to process the guess and verify win condition
+
+## 4th Step
+
+- Change code to ES6
